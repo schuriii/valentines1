@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: sans-serif;
+    background-color: powderblue;
+    overflow: hidden;
+}
+
+.book {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    transition: transform 0.5s;
+    z-index: 10;
+}
+
+.paper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    perspective: 1500px;
+
+}
+
+.front,
+.back {
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+.front {
+    z-index: 1;
+    backface-visibility: hidden;
+    border-left: 3px solid powderblue;
+}
+
+.back {
+    z-index: 0;
+}
+
+.front-content,
+.back-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-content {
+    transform: rotateY(180deg);
+    padding: 30px;
+}
+
+.back-content img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.flipped .front,
+.flipped .back {
+    transform: rotateY(-180deg);
+}
+
+button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.5s;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 11;
+    position: relative;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover i {
+    color: #636363;
+}
+
+i {
+    font-size: 50px;
+    color: gray;
+}
+
+#p1 {
+    z-index: 3;
+}
+
+#p2 {
+    z-index: 2;
+}
+
+#p3 {
+    z-index: 1;
+}
+
+#f2-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 25px;
+    text-align: left;
+}
+
+.in-greeting {
+    font-family: 'Brush Script MT', cursive, 'Georgia', serif;
+    font-size: 1.8em;
+    color: #d4447e;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.in-body {
+    font-family: 'Georgia', serif;
+    font-size: 0.95em;
+    color: #6b2d5c;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.in-body strong {
+    font-size: 1.15em;
+    color: #d4447e;
+    display: block;
+    margin-top: 5px;
+}
+
+.choices {
+    display: flex;
+    gap: 35px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.choice-btn {
+    font-family: 'Georgia', serif;
+    font-size: 1.1em;
+    color: #d4447e;
+    background: transparent;
+    border: 2px solid #f9b8d1;
+    border-radius: 25px;
+    padding: 10px 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.choice-btn:hover {
+    background: #fff0f7;
+    border-color: #d4447e;
+    transform: scale(1.05);
+}
+
+.choice-btn.circled {
+    background: #d4447e;
+    color: white;
+    border-color: #d4447e;
+    box-shadow: 0 0 0 3px rgba(212, 68, 126, 0.2);
+}
+
+.resp-msg {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1em;
+    color: #d4447e;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    white-space: nowrap;
+}
+
+.resp-msg.show {
+    opacity: 1;
+}
+
+.confetti {
+    position: fixed;
+    top: -50px;
+    font-size: 2em;
+    pointer-events: none;
+    z-index: 1;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(720deg);
+        opacity: 0;
+    }
+}
